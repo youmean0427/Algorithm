@@ -1,15 +1,14 @@
 import sys
-from itertools import combinations
-
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
 size = [int(x) for x in input().split()]
+size.append(0)
 
-cnt = size
-combi = combinations(size, 2)
-for j in combi:
-    cnt.append(sum(j))
+cnt = []
+for i in range(M):
+    for j in range(i+1, M+1):
+        cnt.append(size[i] + size[j])
 
 dp = [0] * (N+1)
 
