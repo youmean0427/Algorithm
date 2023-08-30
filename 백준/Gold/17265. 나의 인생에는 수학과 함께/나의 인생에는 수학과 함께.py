@@ -12,10 +12,9 @@ def bfs(arr, start, end):
 
     while q:
 
-        x, y = q.pop()
+        x, y = q.pop(0)
         dir = [(0, 1), (1, 0)]
-        dir_2 = [(0, -2), (-1, -1)]
-        dir_3 = [(-2, 0), (-1, -1)]
+        dir_2 = [(0, -2), (-1, -1), (-2, 0)]
         for n, m in dir:
             nx = n + x
             my = m + y
@@ -23,31 +22,22 @@ def bfs(arr, start, end):
             if 0 <= nx < N and 0 <= my < N:
                 if arr[nx][my].isdigit():
                     if nx == x:
-                        for a, b in dir_2:
-                            if 0 <= a + nx < N and 0 <= b + my < N:
-                                if visited[a + nx][b + my]:
-                                    if arr[x][y] == '+':
-                                        visited[nx][my].add(min(visited[a+nx][b+my]) + int(arr[nx][my]))
-                                        visited[nx][my].add(max(visited[a+nx][b+my]) + int(arr[nx][my]))
-                                    elif arr[x][y] == '-':
-                                        visited[nx][my].add(min(visited[a+nx][b+my]) - int(arr[nx][my]))
-                                        visited[nx][my].add(max(visited[a+nx][b+my]) - int(arr[nx][my]))
-                                    elif arr[x][y] == '*':
-                                        visited[nx][my].add(min(visited[a+nx][b+my]) * int(arr[nx][my]))
-                                        visited[nx][my].add(max(visited[a+nx][b+my]) * int(arr[nx][my]))
-                    elif my == y:
-                        for a, b in dir_3:
-                            if 0 <= a + nx < N and 0 <= b + my < N:
-                                if visited[a + nx][b + my]:
-                                    if arr[x][y] == '+':
-                                        visited[nx][my].add(min(visited[a + nx][b + my]) + int(arr[nx][my]))
-                                        visited[nx][my].add(max(visited[a + nx][b + my]) + int(arr[nx][my]))
-                                    elif arr[x][y] == '-':
-                                        visited[nx][my].add(min(visited[a + nx][b + my]) - int(arr[nx][my]))
-                                        visited[nx][my].add(max(visited[a + nx][b + my]) - int(arr[nx][my]))
-                                    elif arr[x][y] == '*':
-                                        visited[nx][my].add(min(visited[a + nx][b + my]) * int(arr[nx][my]))
-                                        visited[nx][my].add(max(visited[a + nx][b + my]) * int(arr[nx][my]))
+                        dir_start, dir_end = 0, 2
+                    else:
+                        dir_start, dir_end = 1, 3
+                        
+                    for a, b in dir_2[dir_start:dir_end]:
+                        if 0 <= a + nx < N and 0 <= b + my < N:
+                            if visited[a + nx][b + my]:
+                                if arr[x][y] == '+':
+                                    visited[nx][my].add(min(visited[a+nx][b+my]) + int(arr[nx][my]))
+                                    visited[nx][my].add(max(visited[a+nx][b+my]) + int(arr[nx][my]))
+                                elif arr[x][y] == '-':
+                                    visited[nx][my].add(min(visited[a+nx][b+my]) - int(arr[nx][my]))
+                                    visited[nx][my].add(max(visited[a+nx][b+my]) - int(arr[nx][my]))
+                                elif arr[x][y] == '*':
+                                    visited[nx][my].add(min(visited[a+nx][b+my]) * int(arr[nx][my]))
+                                    visited[nx][my].add(max(visited[a+nx][b+my]) * int(arr[nx][my]))
 
                     q.append((nx, my))
                 else:
