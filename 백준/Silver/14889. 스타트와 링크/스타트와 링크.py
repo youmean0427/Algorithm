@@ -8,8 +8,7 @@ arr = [[int(x) for x in input().split()] for _ in range(N)]
 player = [y for y in range(N)]
 player_case = list(combinations(player, N//2))
 cnt = len(player_case) // 2
-
-result = []
+result = float('inf')
 
 for i in range(cnt):
 
@@ -27,6 +26,8 @@ for i in range(cnt):
             link_score += arr[link[j]][link[k]]
             link_score += arr[link[k]][link[j]]
 
-    result.append(abs(start_score-link_score))
+    min_value = abs(start_score-link_score)
+    if result > min_value:
+        result = min_value
 
-print(min(result))
+print(result)
