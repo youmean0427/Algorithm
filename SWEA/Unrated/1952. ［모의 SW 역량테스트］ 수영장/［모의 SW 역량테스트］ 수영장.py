@@ -1,6 +1,9 @@
 def dfs(n, sm):
     global ans
 
+    if ans <= sm:
+        return
+
     if n >= 12:
         ans = min(ans, sm)
         return
