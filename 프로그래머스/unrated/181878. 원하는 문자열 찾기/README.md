@@ -1,10 +1,10 @@
-# [unrated] 원하는 문자열 찾기 - 181878 
+# [level unrated] 원하는 문자열 찾기 - 181878 
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181878#qna) 
 
 ### 성능 요약
 
-메모리: 10.3 MB, 시간: 34.25 ms
+메모리: 10.3 MB, 시간: 4.20 ms
 
 ### 구분
 
@@ -13,6 +13,10 @@
 ### 채점결과
 
 정확성: 100.0<br/>합계: 100.0 / 100.0
+
+### 제출 일자
+
+2023년 10월 1일 17:0:21
 
 ### 문제 설명
 
@@ -69,4 +73,4 @@
 <p>※2023년 05월 15일 제한사항이 수정되었습니다.</p>
 
 
-> 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+> 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges

@@ -1,34 +1,39 @@
-def rabin_karf (pattern, text, N):
+def skip_table(pattern):
 
-    pattern = pattern.upper()
-    text = text.upper()
+    skip = [len(pattern)] * 256
 
-    hash_p = 0
-    hash_t = 0
+    for i in range(len(pattern)):
+        skip[ord(pattern[i])] = len(pattern) - i - 1
+    return skip
+
+def boyer_moore(pattern, text):
 
     p = len(pattern)
     t = len(text)
 
-    if p > t:
-        return 0
+    skip = skip_table(pattern)
 
-    for i in range(p):
-        hash_p += ord(pattern[i]) * N ** (p-i-1)
-        hash_t += ord(text[i]) * N ** (p-i-1)
+    i = p - 1
 
+    while i < t:
+        j = p - 1
+        while text[i] == pattern[j]:
+            if j == 0:
+                return 1
 
-    for i in range(t-p+1):
-        if hash_p == hash_t:
-            return 1
+            i -= 1
+            j -= 1
 
-        if i < t-p:
-            hash_t = ((hash_t-(ord(text[i]) * N ** (p-1))) * N + ord(text[i+p])) * 1
-
+        if skip[ord(text[i])] > p - j :
+            i += skip[ord(text[i])]
+        else:
+            i += p - j
 
     return 0
 
-
-def solution(text, pattern):
-    N = 31
-    answer = rabin_karf(pattern, text, N)
+def solution(myString, pat):
+    myString = myString.upper()
+    pat = pat.upper()
+    answer = boyer_moore(pat, myString)
+        
     return answer
