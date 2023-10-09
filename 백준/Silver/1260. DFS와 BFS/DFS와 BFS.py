@@ -1,5 +1,4 @@
 def DFS(n):
-
     stack = [n]
     visited = [0] * (N + 1)
 
@@ -12,24 +11,24 @@ def DFS(n):
                 if arr[m][i] == 1 and visited[i] == 0:
                     stack.append(i)
 
-def BFS(n):
 
+def BFS(n):
     queue = [n]
     visited = [0] * (N + 1)
+    visited[n] = 1
 
     while queue:
         m = queue.pop(0)
-        if visited[m] == 0:
-            visited[m] = 1
-            bfs.append(m)
-            for i in range(0, N+1):
-                if arr[m][i] == 1 and visited[i] == 0:
-                    queue.append(i)
+        bfs.append(m)
+        for i in range(0, N + 1):
+            if arr[m][i] == 1 and visited[i] == 0:
+                visited[i] = 1
+                queue.append(i)
 
 
 N, M, V = map(int, input().split())
 
-arr = [[0] * (N+1) for _ in range(N+1)]
+arr = [[0] * (N + 1) for _ in range(N + 1)]
 dfs = []
 bfs = []
 
