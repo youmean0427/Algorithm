@@ -1,33 +1,29 @@
 import sys
 input = sys.stdin.readline
 
-N = int(input())
-find_cards = [int(x) for x in input().split()]
-M = int(input())
-cards = [int(x) for x in input().split()]
+def binary_search(start, end, card, i):
 
-sorted_cards = []
-for i in range(M):
-    sorted_cards.append((cards[i], i))
-sorted_cards.sort()
-result = [0] * M
-
-for i in find_cards:
-
-    start = 0
-    end = M-1
-    flag = 1
-    while start <= end and flag:
+    while start <= end:
 
         mid = (start + end) // 2
-        if sorted_cards[mid][0] == i:
-            result[sorted_cards[mid][1]] = 1
-            flag = 0
+        if find_cards[mid] == card:
+            result[i] = 1
+            return
 
-        elif sorted_cards[mid][0] < i:
+        elif find_cards[mid] < card:
             start = mid + 1
 
-        elif sorted_cards[mid][0] > i:
+        elif find_cards[mid] > card:
             end = mid - 1
 
+N = int(input())
+find_cards = [int(x) for x in input().split()]
+find_cards.sort()
+
+M = int(input())
+cards = [int(x) for x in input().split()]
+result = [0] * M
+
+for i in range(M):
+    binary_search(0, N-1, cards[i], i)
 print(*result)
