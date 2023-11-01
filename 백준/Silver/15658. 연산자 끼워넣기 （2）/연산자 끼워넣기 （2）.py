@@ -26,7 +26,10 @@ def dfs(n, sm):
 
     if op[3]:
         op[3] -= 1
-        dfs(n+1, int(sm / arr[n+1]))
+        if sm < 0:
+            dfs(n+1, -1 * ((-1 * sm) // arr[n+1]))
+        else:
+            dfs(n+1, sm // arr[n+1])
         op[3] += 1
 
 N = int(input())
