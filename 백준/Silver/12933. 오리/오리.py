@@ -16,7 +16,9 @@ while S:
 
     flag = 1
     i = 0
+    
     while i < len(result) and flag:
+        
         if result[i][-1] == "q" and x == 'u':
             result[i].append(x)
             flag = 0
@@ -36,27 +38,26 @@ while S:
         elif result[i][-1] == "k" and x == 'q':
             result[i].append(x)
             flag = 0
-
+            
         i += 1
 
 check = 0
 q_check = 0
+len_check = 0
 
 for i in result:
     if i[len(i)-5:len(i)] == ['q', 'u', 'a', 'c', 'k']:
        cnt += 1
        check = 1
+       
+       q_check += i.count('q')
+       len_check += len(i)
+       
     elif 'u' in i or 'a' in i or 'c' in i or 'k' in i:
         print(-1)
         exit(0)
 
-lenlen = 0
-for k in result:
-    if k[:5] == ['q', 'u', 'a', 'c', 'k']:
-        q_check += k.count('q')
-    lenlen += len(k)
-
-if lenS > lenlen:
+if lenS > len_check:
     print(-1)
     exit(0)
 
