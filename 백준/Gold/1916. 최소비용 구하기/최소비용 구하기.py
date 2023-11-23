@@ -1,43 +1,46 @@
 import sys
 input = sys.stdin.readline
 import heapq
+"""
+6 8
+1 2 2
+1 3 4
+2 3 1
+2 4 7
+3 5 3
+4 6 1
+5 4 2
+5 6 5
+"""
 
+def Dijkstra(s):
+    heap = []
+    D[s] = 0
+    heapq.heappush(heap, (0, s))
+
+    while heap:
+
+        x, y = heapq.heappop(heap)
+        if D[y] < x:
+            continue
+
+        for i in arr[y]:
+            cost = x + i[1]
+            if cost < D[i[0]]:
+                D[i[0]] = cost
+                heapq.heappush(heap, (cost, i[0]))
 
 N = int(input())
 M = int(input())
+arr = [[] for _ in range(N+1)]
 
-cities = [[] for _ in range(N)]
-D = [float('inf')] * N
+D = [float('inf')] * (N+1)
 
 for _ in range(M):
-
-    s, e, c = map(int, input().split())
-    cities[s-1].append((e-1, c))
+    a, b, c = map(int, input().split())
+    arr[a].append((b, c))
 
 start, end = map(int, input().split())
-start, end = start - 1, end - 1
 
-
-heap = []
-heapq.heappush(heap, (0, start))
-D[start] = 0
-
-while heap:
-
-    d, now = heapq.heappop(heap)  # 최소값
-
-    if D[now] < d:
-        continue
-
-    for v, w in cities[now]:  # v : 연결된 정점, w : 비용
-
-        cost = d + w
-        if cost < D[v]:
-            D[v] = cost
-            heapq.heappush(heap, (cost, v))
-
-
+Dijkstra(start)
 print(D[end])
-
-
-
