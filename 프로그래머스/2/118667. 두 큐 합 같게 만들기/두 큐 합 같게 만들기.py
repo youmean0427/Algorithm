@@ -4,7 +4,7 @@ def solution(queue1, queue2):
     
     queue1 = deque(queue1)
     queue2 = deque(queue2)
-    
+    flag =  len(queue1)
     q1_sum = sum(queue1)
     q2_sum = sum(queue2)
     N = (q1_sum + q2_sum) // 2
@@ -13,7 +13,7 @@ def solution(queue1, queue2):
     
     cnt = 0
     while q1_sum != q2_sum:
-        if cnt > 6000000:
+        if cnt > flag * 3:
             return answer
         if q1_sum > q2_sum:
             x = queue1.popleft()
