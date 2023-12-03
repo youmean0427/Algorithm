@@ -33,3 +33,5 @@ function solution(answers) {
     }
     return result;
 }
+
+// 처음에 찍는 방식이 반복되는 것을 생각 못함
