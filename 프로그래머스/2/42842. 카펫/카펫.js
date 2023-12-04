@@ -1,17 +1,19 @@
 function solution(brown, yellow) {
 
-    start = Math.trunc(brown/4)
-    end = Math.ceil(brown/2)
+    const start = Math.trunc(brown/4)
+    const end = Math.ceil(brown/2)
     
-    total = brown + yellow
-    arr = []
+    const total = brown + yellow
+    
+    let test = []
     for (let i = start; i < end; i++) {
         if (total % i == 0 && i > 2) {
-           arr.push([i, total / i]) 
+           test.push([i, total / i]) 
         }    
     }
+    
     var answer = []
-    for (x of arr) {
+    for (let x of test) {
         x.sort((a, b) => b - a)
         if (x[0] * 2 + (x[1] - 2) * 2 === brown) {
             answer = x    
@@ -21,10 +23,11 @@ function solution(brown, yellow) {
     return answer
 }
 
-// 14	4	None	[6, 3]
-// 18	6	None	[8, 3]
-// 20	12	None	[8, 4]
-// 22	8	None	[10, 3]
-// 24	9	None	[11, 3]
-// 24	16	None	[10, 4]
-// 26	10	None	[12, 3]
+// Test
+// 14	4	[6, 3]
+// 18	6	[8, 3]
+// 20	12	[8, 4]
+// 22	8	[10, 3]
+// 24	9	[11, 3]
+// 24	16	[10, 4]
+// 26	10	[12, 3]
