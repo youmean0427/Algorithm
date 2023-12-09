@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 31120 KB, 시간: 40 ms
+메모리: 9592 KB, 시간: 120 ms
 
 ### 분류
 
@@ -12,13 +12,13 @@
 
 ### 제출 일자
 
-2023년 12월 9일 21:06:51
+2023년 12월 9일 21:07:58
 
 ### 문제 설명
 
 <p>정수 <var>A, B</var> 가 주어진다. 세로 길이가 <var>A</var> cm, 가로 길이가 <var>B</var> cm 인 아래와 같은 직사각형의 넓이를 cm<sup>2</sup> 단위로 구하시오.</p>
 
-<p style="text-align: center;"><img alt="" src=""></p>
+<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/4709c305-92ed-40a0-ab2e-3ade81daed95/-/preview/"></p>
 
 ### 입력 
 
