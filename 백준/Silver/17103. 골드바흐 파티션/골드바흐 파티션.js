@@ -16,14 +16,15 @@ function prime(x) {
 }
 
 const p = prime(1000000)
-
+p[0] = false
+p[1] = false
 input.forEach((x, i) => {
     if (i !== 0) {
         let cnt = 0
-        for (let j = 2; j < parseInt(x/2)+1; j++) {
+        for (let j = 2; j < x; j++) {
             if (p[j] && p[x-j]) {
                 cnt += 1
             }
         }
-        console.log(cnt)
+        console.log(Math.ceil(cnt/2))
 }})
