@@ -9,7 +9,7 @@ for _ in range(N):
 
     if x == "ENTER":
         total += len(result)
-        result = set()
+        result.clear()
     else:
         result.add(x)
 
