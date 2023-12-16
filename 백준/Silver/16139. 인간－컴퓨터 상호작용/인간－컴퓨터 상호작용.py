@@ -7,7 +7,7 @@ arr = [{S[0] : 1} for _ in range(len(S)+1)]
 arr[-1] = {}
 
 for i in range(1, len(S)):
-    arr[i] = copy.deepcopy(arr[i-1])
+    arr[i] = arr[i-1].copy()
     if S[i] in arr[i]:
         arr[i][S[i]] += 1
     else:
