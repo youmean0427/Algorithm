@@ -25,8 +25,7 @@ def bfs(start):
         for i in range(1, 7):
             y = x + i
             if visited[y] > visited[x] + 1:
-                visited[y] = min(visited[y], visited[x] + 1)
-
+                visited[y] = visited[x] + 1
                 if arr[y]:
                     q.append(arr[y])
                     visited[arr[y]] = min(visited[arr[y]], visited[x] + 1)
