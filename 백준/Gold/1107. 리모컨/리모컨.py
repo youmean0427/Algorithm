@@ -1,19 +1,31 @@
 import sys
 input = sys.stdin.readline
+# sys.setrecursionlimit(10**6)
 
-N = int(input())
+N = input().rstrip()
+N = '0' + N
 M = int(input())
-bnt = [int(i) for i in input().split()]
+bnt = []
+if M:
+    bnt = set(map(int, input().split()))
 
-ans = abs(N-100)
+start = 100
+ans = abs(int(N) - start)
 
-for i in range(1000001):
-    i = str(i)
+def back(n, sm):
+    global ans
 
-    for j in range(len(i)):
-        if int(i[j]) in bnt:
-            break
-    else:
-        ans = min(ans, abs(int(i)-N) + len(i))
+    if n == len(N):
+        ans = min(ans, (abs(int(N) - int(sm))) + len(str(int(sm))))
+        return
 
+    for i in range(10):
+        if i in bnt:
+            if i == 0:
+                if (len(sm) >= 1 and sm[n-1] == '0' and n != len(N)-1) or n == 0:
+                    back(n + 1, sm + '0')
+        else:
+            back(n+1, sm + str(i))
+
+back(0, '')
 print(ans)
