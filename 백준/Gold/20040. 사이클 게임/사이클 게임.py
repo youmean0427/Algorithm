@@ -12,11 +12,17 @@ def find_set (x):
 
 def union(x, y, i):
     global cnt
-    if find_set(x) == find_set(y):
+    xp = find_set(x)
+    yp = find_set(y)
+
+    if xp == yp:
         cnt = i
         print(i+1)
         exit(0)
-    p[find_set(y)] = find_set(x)
+    elif xp < yp:
+        p[yp] = xp
+    else:
+        p[xp] = yp
 
 cnt = 0
 for i in range(m):
