@@ -2,14 +2,6 @@ import sys
 input = sys.stdin.readline
 # sys.setrecursionlimit(10**6)
 
-N, M = map(int, input().split())
-arr = []
-for _ in range(M):
-    a, b, c = map(int, input().split())
-    arr.append((a, b, c))
-
-D = [float('inf')] * (N+1)
-
 def bellman_ford(start):
     D[start] = 0
 
@@ -26,6 +18,14 @@ def bellman_ford(start):
                     # Negative Cycle exists
                     return False
     return True
+
+N, M = map(int, input().split())
+arr = []
+for _ in range(M):
+    a, b, c = map(int, input().split())
+    arr.append((a, b, c))
+
+D = [float('inf')] * (N+1)
 
 if bellman_ford(1):
     for i in D[2:]:
