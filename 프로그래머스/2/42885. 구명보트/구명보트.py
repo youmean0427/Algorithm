@@ -9,13 +9,14 @@ def solution(people, limit):
         if i == j:
             cnt += 1
             break
-        
-        elif people[i] + people[j] <= limit:
+            
+        if people[i] + people[j] > limit:
             cnt += 1
             j -= 1
-            i += 1
+          
         else:
             cnt += 1
             j -= 1
+            i += 1
     
     return cnt
