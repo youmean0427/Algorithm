@@ -1,22 +1,18 @@
 def solution(people, limit):
-    cnt = 0
+    
     people.sort()
+    start = 0
+    cnt = 0
+    end = len(people) - 1
     
-    i = 0
-    j = len(people)-1
-    
-    while i <= j:
-        if i == j:
+    while start <= end:
+        
+        if people[start] + people[end] <= limit:
             cnt += 1
-            break
-            
-        if people[i] + people[j] > limit:
-            cnt += 1
-            j -= 1
-          
+            start += 1
+            end -= 1
         else:
             cnt += 1
-            j -= 1
-            i += 1
-    
+            end -= 1
+            
     return cnt
