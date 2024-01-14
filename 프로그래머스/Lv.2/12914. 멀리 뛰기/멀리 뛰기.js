@@ -16,6 +16,6 @@ function solution(n) {
         }
     }
     
-    answer = dp[n] % 1234567
+    answer = dp[n]
     return answer;
 }
