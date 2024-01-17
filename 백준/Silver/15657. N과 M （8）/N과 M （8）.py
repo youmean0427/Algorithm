@@ -5,8 +5,14 @@ from itertools import combinations_with_replacement as cr
 N, M = map(int, input().split())
 arr = [int(i) for i in input().split()]
 arr.sort()
-x = list(cr(arr, M))
-x.sort(key= lambda x : x[0])
+result = []
+def dfs(n, sm):
 
-for i in x:
-    print(*i)
+    if len(sm) >= M:
+        print(*sm)
+        return
+
+    for i in range(n, N):
+        dfs(i, sm + [arr[i]])
+
+dfs(0, [])
