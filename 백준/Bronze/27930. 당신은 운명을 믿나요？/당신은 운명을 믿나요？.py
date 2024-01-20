@@ -1,21 +1,26 @@
-S = input()
+import sys
+input = sys.stdin.readline
 
-# print(S)
+S = list(i for i in input().rstrip())
 
-a = list()
-b = list()
+korea = "KOREA"
+yonsei = "YONSEI"
+k_idx = 0
+y_idx = 0
 
-for i in 'KOREA':
-    if i in S and i not in a:
-        a.append(i)
+while S:
+    x = S.pop(0)
+
+    if korea[k_idx] == x:
+        k_idx += 1
+    if yonsei[y_idx] == x:
+        y_idx += 1
 
 
-for i in 'YONSEI':
-    if i in S and i not in b:
-        b.append(i)
+    if k_idx == 5:
+        print(korea)
+        break
+    if y_idx == 6:
+        print(yonsei)
+        break
 
-
-if ''.join(a) == 'KOREA':
-    print(''.join(a))
-else:
-    print(''.join(b))
