@@ -2,7 +2,6 @@ def solution(dirs):
     global answer
     
     arr = [[0 for _ in range(11)] for _ in range(11)]
-    sn, sm = 5, 5
     dir = list(dirs)
     
     dir_dict = {"U" : [-1, 0], "D" : [1, 0], "R" : [0, 1], "L" : [0, -1]}
@@ -33,6 +32,6 @@ def solution(dirs):
             else:
                 stack.append((x, y, z))
     
-    x = dfs(sn, sm)
+    x = dfs(5, 5)
     answer = len(x)
     return answer
