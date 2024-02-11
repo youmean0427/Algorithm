@@ -5,10 +5,8 @@ def solution(numbers):
     x = set(permutations(numbers, 2))
     
     for i in x:
-        if sum(i) in answer:
-            continue
-        else:
-            answer.append(sum(i))
+        answer.append(sum(i))
         
+    answer = list(set(answer))
     answer.sort()
     return answer
