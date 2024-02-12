@@ -25,7 +25,6 @@ def bfs(v):
         q.append((x, y))
         visited[x][y] = 1
 
-    cnt = 0
     while q:
 
         n, m = q.popleft()
@@ -36,15 +35,9 @@ def bfs(v):
             mc = m + c
             if 0 <= nr < N and 0 <= mc < N:
                 if arr[nr][mc] == 0 or arr[nr][mc] == 2:
-                    if visited[nr][mc] == 0:
+                    if visited[nr][mc] == 0 or visited[nr][mc] > visited[n][m] + 1:
                         visited[nr][mc] = visited[n][m] + 1
-                        cnt = max(cnt, visited[nr][mc])
                         q.append((nr, mc))
-                    if visited[nr][mc]:
-                        if visited[nr][mc] > visited[n][m] + 1:
-                            visited[nr][mc] = visited[n][m] + 1
-                            cnt =  max(cnt, visited[nr][mc])
-                            q.append((nr, mc))
 
 
 def max_check(visited):
