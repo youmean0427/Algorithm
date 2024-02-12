@@ -1,5 +1,6 @@
 import sys
 from itertools import combinations
+from collections import deque
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
@@ -15,14 +16,19 @@ for i in range(N):
 
 virus = list(combinations(zero, M))
 
-def bfs(x, y):
+def bfs(v):
 
-    q = [(x, y)]
-    visited[x][y] = 1
+    q = deque()
 
+    for vv in v:
+        x, y = vv[0], vv[1]
+        q.append((x, y))
+        visited[x][y] = 1
+
+    cnt = 0
     while q:
 
-        n, m = q.pop(0)
+        n, m = q.popleft()
         dir = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 
         for r, c in dir:
@@ -32,11 +38,14 @@ def bfs(x, y):
                 if arr[nr][mc] == 0 or arr[nr][mc] == 2:
                     if visited[nr][mc] == 0:
                         visited[nr][mc] = visited[n][m] + 1
+                        cnt = max(cnt, visited[nr][mc])
                         q.append((nr, mc))
                     if visited[nr][mc]:
                         if visited[nr][mc] > visited[n][m] + 1:
                             visited[nr][mc] = visited[n][m] + 1
+                            cnt =  max(cnt, visited[nr][mc])
                             q.append((nr, mc))
+
 
 def max_check(visited):
     max_val = 0
@@ -65,8 +74,7 @@ answer = float('inf')
 
 for v in virus:
     visited = visited_arr(N)
-    for x, y in v:
-        bfs(x, y)
+    bfs(v)
     cnt = max_check(visited)
     if cnt != -1:
         answer = min(answer, cnt)
