@@ -1,10 +1,11 @@
-import sys, copy
+import sys
 from itertools import combinations
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
 arr = []
 zero = []
+
 for i in range(N):
     x = list(map(int, input().split()))
     for k in range(len(x)):
@@ -37,7 +38,7 @@ def bfs(x, y):
                             visited[nr][mc] = visited[n][m] + 1
                             q.append((nr, mc))
 
-def check(visited):
+def max_check(visited):
     max_val = 0
     for i in visited:
         if 0 in i:
@@ -46,20 +47,27 @@ def check(visited):
             max_val = max(max_val, max(i))
     return max_val
 
+
+def visited_arr(N):
+    visited = []
+    for n in range(N):
+        box = []
+        for m in range(N):
+            if arr[n][m] == 1:
+                box.append(-1)
+            else:
+                box.append(0)
+        visited.append(box)
+    return visited
+
 ans = 0
 answer = float('inf')
-for v in virus:
-    visited = copy.deepcopy(arr)
-    for n in range(len(visited)):
-        for m in range(len(visited)):
-            if visited[n][m] == 1:
-                visited[n][m] = -1
-            if visited[n][m] == 2:
-                visited[n][m] = 0
 
+for v in virus:
+    visited = visited_arr(N)
     for x, y in v:
         bfs(x, y)
-    cnt = check(visited)
+    cnt = max_check(visited)
     if cnt != -1:
         answer = min(answer, cnt)
 
