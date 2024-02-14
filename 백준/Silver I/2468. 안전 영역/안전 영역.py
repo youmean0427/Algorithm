@@ -5,13 +5,9 @@ input = sys.stdin.readline
 
 N = int(input())
 arr = []
-max_val = 0
-min_val = float('inf')
 
 for _ in range(N):
     line = list(map(int, input().split()))
-    max_val = max(max_val, max(line))
-    min_val = min(min_val, min(line))
     arr.append(line)
 
 def sink(arr, sink_num):
@@ -40,7 +36,7 @@ def bfs(sn, sm, visited):
 
 def find(arr):
     answer = 1
-    for val in range(min_val, max_val):
+    for val in range(1, 101):
         visited = sink(arr, val)
         cnt = 0
 
