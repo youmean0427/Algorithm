@@ -5,11 +5,14 @@ def solution(sequence, k):
     i = 0
     j = 0
     result = sequence[0]
+    length = float('inf')
     
     while i < N:
         
         if result == k:
-            answer.append((j, i, i - j))
+            if (i - j) < length:
+                answer = [j, i]
+                length = (i - j)
             result -= sequence[j]
             j += 1
         
@@ -22,6 +25,4 @@ def solution(sequence, k):
             result -= sequence[j]
             j += 1 
     
-    answer.sort(key=lambda x: x[2])
-    answer = answer[0][:2]
     return answer
