@@ -1,14 +1,18 @@
 def solution(n):
-    answer = 0
+            
+    def prime_list(n):
+        arr = [True] * (n+1)
+        arr[0], arr[1] = False, False
+        for i in range(2, n+1):
+            if arr[i]:
+                for j in range(i+i, n+1, i):
+                    arr[j] = False
+        
+        cnt = 0
+        for i in arr:
+            if i:
+                cnt += 1
+        return cnt
     
-    def prime(n):
-        for i in range(2, int(n ** (1/2))+1):
-            if n % i == 0:
-                return False
-        return True
-    
-    for i in range(2, n+1):
-        if prime(i):
-            answer += 1
-
+    answer = prime_list(n)
     return answer
