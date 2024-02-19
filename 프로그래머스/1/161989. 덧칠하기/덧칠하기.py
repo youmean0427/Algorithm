@@ -1,6 +1,6 @@
 def solution(n, m, section):
     answer = 0
-    arr = [1] * (n+1) + [0] * m
+    arr = [1] * (n+1)
     
     for i in section:
         arr[i] = 0
