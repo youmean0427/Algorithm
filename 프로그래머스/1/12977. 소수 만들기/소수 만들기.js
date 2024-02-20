@@ -1,8 +1,6 @@
 function solution(nums) {
     var answer = 0
     const N = nums.length
-    let visited = new Array(N).fill(0)
-    let dfs_nums = []
     
     function prime(n) {
         for (let i = 2; i <= n ** (1/2); i++) {
