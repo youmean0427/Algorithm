@@ -1,17 +1,30 @@
+from collections import defaultdict
+
 def solution(N, stages):
+    fail = {}
     answer = []
-    fail = []
+    cnt = defaultdict(int)
     S = len(stages)
     
-    for i in range(1, N+1):
-        if S:
-            cnt = stages.count(i)
-            fail.append((i, cnt / S))
-            S -= cnt
+    for i in stages:
+        if i in cnt:
+            cnt[i] += 1
         else:
-            fail.append((i, 0))
+            cnt[i] = 1
+    
+    for i in range(1, N+1):
+        if i - 1 not in cnt:
+            pass
+        else:
+            S -= cnt[i-1]
         
-    fail.sort(key=lambda x: -x[1])
-    for i in fail:
+        if S:
+            fail[i] = cnt[i] / S
+        else:
+            fail[i] = 0
+
+    sorted_items = sorted(fail.items(), key = lambda x: -x[1])
+    for i in sorted_items:
         answer.append(i[0])
+        
     return answer
