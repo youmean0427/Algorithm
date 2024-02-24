@@ -3,8 +3,7 @@ def solution(k, score):
     arr = []
     
     for i in score:
-        if len(arr) < k+1:
-            arr.append(i)
+        arr.append(i)
         arr.sort(reverse=True)
         
         if len(arr) > k:
