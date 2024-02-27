@@ -1,28 +1,21 @@
-import sys, heapq
+import sys
 input = sys.stdin.readline
 
-def djik(start):
+def bfs(start, end):
 
-    D = [float('inf')] * (N+1)
-    D[start] = 0
+    q = [(0, start)]
+    visited = [float('inf')] * (N+1)
+    visited[start] = 0
 
-    heap = []
-    heapq.heappush(heap, (0, start))
-
-    while heap:
-
-        cost, node = heapq.heappop(heap)
-
-        if D[node] < cost:
-            continue
-
+    while q:
+        cost, node = q.pop(0)
         for next_cost, next_node in arr[node]:
-            cost_sum = next_cost + cost
-            if D[next_node] > cost_sum:
-                D[next_node] = cost_sum
-                heapq.heappush(heap, (cost_sum, next_node))
+            cost_sum = cost + next_cost
+            if visited[next_node] > cost_sum:
+                visited[next_node] = cost_sum
+                q.append((cost_sum, next_node))
 
-    return D
+    return visited[end]
 
 N, M = map(int, input().split())
 arr = [[] for _ in range(N+1)]
@@ -34,4 +27,5 @@ for _ in range(N-1):
 
 for _ in range(M):
     start, end = map(int, input().split())
-    print(djik(start)[end])
+    ans = bfs(start, end)
+    print(ans)
