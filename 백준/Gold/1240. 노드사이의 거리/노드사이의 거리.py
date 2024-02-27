@@ -13,6 +13,9 @@ def djik(start):
 
         cost, node = heapq.heappop(heap)
 
+        if D[node] < cost:
+            continue
+
         for next_cost, next_node in arr[node]:
             cost_sum = next_cost + cost
             if D[next_node] > cost_sum:
