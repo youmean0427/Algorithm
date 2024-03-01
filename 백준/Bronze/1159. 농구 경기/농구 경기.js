@@ -1,7 +1,8 @@
 let fs = require("fs");
 let input = fs.readFileSync("/dev/stdin");
-// let input = fs.readFileSync("./input.txt")
+// let input = fs.readFileSync("./input.txt");
 input = input.toString().trim().split("\n");
+input.sort();
 
 const N = parseInt(input[0]);
 let cnt = {};
@@ -14,22 +15,15 @@ for (let i = 1; i <= N; i++) {
   }
 }
 
-const name = [];
-const keys = Object.keys(cnt);
-keys.forEach((key) => {
-  if (cnt[key] >= 5) {
-    name.push(key);
-  }
-});
-
 answer = "";
-name.sort();
-if (name.length) {
-  name.forEach((x) => {
-    answer += x;
-  });
-} else {
-  answer = "PREDAJA";
+for (let i in cnt) {
+  if (cnt[i] >= 5) {
+    answer += i;
+  }
 }
 
-console.log(answer);
+if (answer === "") {
+  console.log("PREDAJA");
+} else {
+  console.log(answer);
+}
