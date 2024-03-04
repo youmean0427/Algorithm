@@ -1,8 +1,20 @@
-fun main() {
-    val T = readln().toInt()
+import java.io.BufferedWriter
+import java.io.OutputStreamWriter
+import java.util.StringTokenizer
+
+fun main() = with (System.`in`.bufferedReader()) {
+
+    val T = readLine().toInt()
+    val bw = BufferedWriter(OutputStreamWriter(System.out))
+
     for (i in 1..T) {
-        val input = readln().split(" ").map { it.toInt() }
-        val total = input[0] + input[1]
-        println("Case #$i: $total")
+        val st = StringTokenizer(readLine())
+        val a = st.nextToken().toInt()
+        val b = st.nextToken().toInt()
+
+        bw.write("Case #$i: ${a+b}\n")
     }
+    bw.flush()
+    bw.close()
+
 }
