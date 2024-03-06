@@ -1,5 +1,4 @@
 import sys
-from itertools import combinations
 # sys.stdin = open("input.txt", 'r')
 input = sys.stdin.readline
 
@@ -19,20 +18,27 @@ for n in range(N):
         if arr[n][m] == 1:
             house.append((n, m))
 
-cases = list(combinations(chicken, M))
+visited = [0] * (N+1)
+def dfs(cnt, sm, i):
+    global ans
+    if len(sm) == M:
+        total = 0
+        for hn, hm in house:
+            min_dist = float('inf')
+            for case in sm:
+                dist = abs(case[0]-hn) + abs(case[1]-hm)
+                min_dist = min(min_dist, dist)
+            total += min_dist
+        ans = min(total, ans)
+        return
+
+    if i == len(chicken):
+        return
+
+    dfs(cnt+1, sm+[chicken[i]], i+1)
+    dfs(cnt+1, sm, i+1)
+
 
 ans = float('inf')
-for case in cases:
-    total = 0
-    cnt = {}
-    for c in case:
-        for hn, hm in house:
-            if (hn, hm) in cnt:
-                cnt[(hn, hm)] = min(cnt[hn, hm],abs(c[0] - hn) + abs(c[1] - hm) )
-            else:
-                cnt[(hn, hm)] = abs(c[0] - hn) + abs(c[1] - hm)
-
-    cnt_sum = sum(cnt.values())
-    ans = min(ans, cnt_sum)
-
+dfs(0, [], 0)
 print(ans)
