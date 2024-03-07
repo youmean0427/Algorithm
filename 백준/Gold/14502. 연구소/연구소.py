@@ -1,4 +1,4 @@
-import sys, copy
+import sys
 from collections import deque
 from itertools import combinations
 # sys.stdin = open("input.txt", 'r')
@@ -42,7 +42,8 @@ def wall_case():
     ans = 0
     zero_case = list(combinations(zero, 3))
     for case in zero_case:
-        wall = copy.deepcopy(arr)
+        # wall = copy.deepcopy(arr)
+        wall = [r[:] for r in arr]
         for n, m in case:
             wall[n][m] = 1
 
