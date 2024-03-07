@@ -1,4 +1,5 @@
 import sys, copy
+from collections import deque
 from itertools import combinations
 # sys.stdin = open("input.txt", 'r')
 input = sys.stdin.readline
@@ -21,11 +22,11 @@ def arr_input():
 
 def bfs(sn, sm, wall):
 
-    q = [(sn, sm)]
+    q = deque([(sn, sm)])
     wall[sn][sm] = 2
 
     while q:
-        x, y = q.pop(0)
+        x, y = q.popleft()
         dir = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
         for n, m in dir:
@@ -37,6 +38,7 @@ def bfs(sn, sm, wall):
                     q.append((nx, ym))
 
 def wall_case():
+
     ans = 0
     zero_case = list(combinations(zero, 3))
     for case in zero_case:
