@@ -3,27 +3,17 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-dp = [float('inf') for _ in range(N+6)]
+ans = 0
+while N > 0:
 
-dp[1], dp[3] = 0, 0
-dp[2], dp[4] = 1, 2
-dp[5] = 1
-
-for i in range(6, N+1):
-
-    if dp[i-2] == 0 or dp[i-(i-2)] == 0:
-        two = float('inf')
+    if N % 5 == 0:
+        ans += N // 5
+        N = N % 5
     else:
-        two = dp[i-2] + dp[i-(i-2)]
+        N -= 2
+        ans += 1
 
-    if dp[i-5] == 0 or dp[i-(i-5)] == 0:
-        five = float('inf')
-    else:
-        five = dp[i-5] + dp[i-(i-5)]
-
-    dp[i] = min(dp[i], two, five)
-
-if dp[N]:
-    print(dp[N])
+if N >= 0:
+    print(ans)
 else:
     print(-1)
