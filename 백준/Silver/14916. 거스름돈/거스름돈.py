@@ -5,7 +5,6 @@ input = sys.stdin.readline
 N = int(input())
 dp = [float('inf') for _ in range(N+6)]
 
-dp[0] = 1
 dp[1], dp[3] = 0, 0
 dp[2], dp[4] = 1, 2
 dp[5] = 1
