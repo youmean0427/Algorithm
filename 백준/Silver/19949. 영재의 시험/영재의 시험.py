@@ -13,7 +13,11 @@ def dfs(n, sm, con):
         if sm >= 5:
             ans += 1
         return
-
+    
+    # pruning
+    if sm + 10 - len(con) < 5:
+        return
+    
     con_num = 0
     if len(con) >= 2:
         if con[-2] == con[-1]:
