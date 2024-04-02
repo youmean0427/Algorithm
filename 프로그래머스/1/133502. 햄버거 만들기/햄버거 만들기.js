@@ -8,12 +8,13 @@ function solution(ingredient) {
         idx += 1
         if (idx >= 4) {
             if (stack.slice(idx-4, idx).join("") == 1231) {
-                let cnt = 0
+                // let cnt = 0
+                // answer += 1
+                // while (cnt < 4){
+                //     stack.pop()
+                //     cnt += 1
+                stack.splice(idx-4, idx)
                 answer += 1
-                while (cnt < 4){
-                    stack.pop()
-                    cnt += 1
-                }
                 idx = stack.length
             }
         } 
