@@ -4,15 +4,15 @@ from collections import deque
 input = sys.stdin.readline
 
 def bfs(A, B):
-    q = deque([[A, ""]])
-    visited = [0] * 10001
-    visited[A] = 1
+    q = deque([A])
+    visited = ["" for _ in range(10000)]
+    visited[A] = "X"
     while q:
 
-        x, y = q.popleft()
+        x = q.popleft()
 
         if x == B:
-            print(y)
+            print(visited[x][1:])
             return
 
         # D
@@ -21,12 +21,12 @@ def bfs(A, B):
             D = D % 10000
 
         if D == B:
-            print(y+"D")
+            print(visited[x][1:] + 'D')
             return
 
-        if visited[D] == 0:
-            visited[D] = 1
-            q.append([D, y+"D"])
+        if visited[D] == "":
+            visited[D] = visited[x] + 'D'
+            q.append(D)
 
         # S
 
@@ -35,34 +35,34 @@ def bfs(A, B):
             S = 9999
 
         if S == B:
-            print(y + "S")
+            print(visited[x][1:] + 'S')
             return
 
-        if visited[S] == 0:
-            visited[S] = 1
-            q.append([S, y + "S"])
+        if visited[S] == "":
+            visited[S] = visited[x] + 'S'
+            q.append(S)
 
         # L
         L = (x % 1000) * 10 + x // 1000
 
         if L == B:
-            print(y + "L")
+            print(visited[x][1:] + 'L')
             return
 
-        if visited[L] == 0:
-            visited[L] = 1
-            q.append([L, y + "L"])
+        if visited[L] == "":
+            visited[L] += visited[x] + 'L'
+            q.append(L)
 
         # R
         R = (x % 10) * 1000 + (x // 10)
 
         if R == B:
-            print(y + "R")
+            print(visited[x][1:] + 'R')
             return
 
-        if visited[R] == 0:
-            visited[R] = 1
-            q.append([R, y + "R"])
+        if visited[R] == "":
+            visited[R] = visited[x] + 'R'
+            q.append(R)
 
 
 T = int(input())
