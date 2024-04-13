@@ -27,7 +27,7 @@ while idx < min_val // 2:
     for i in range(idx+1, N-idx-1):
         new_arr[i][M-idx-1] = dq.popleft()
     for i in range(M-idx-1, idx, -1):
-        new_arr[-idx-1][i] = dq.popleft()
+        new_arr[N-idx-1][i] = dq.popleft()
     for i in range(N-idx-1, idx, -1):
         new_arr[i][idx] = dq.popleft()
     idx += 1
