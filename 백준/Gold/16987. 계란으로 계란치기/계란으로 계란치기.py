@@ -17,11 +17,17 @@ ans = 0
 def dfs(n, cnt):
     global ans
 
+    # 가지치기
+    # 남은 횟수를 모두 진행해도, ans보다 작거나 같을 경우
+    if ans >= (cnt + (N-n) * 2):
+        return
+
     if n == N:
         ans = max(ans, cnt)
         return
 
-    if arr[n][0] <= 0:  # 현재 계란이 꺠진 경우, 다음 계란
+
+    if arr[n][0] <= 0:  # 현재 계란이 깨진 경우, 다음 계란
         dfs(n + 1, cnt)
     else:  # 현재 계란이 깨지지 않은 경우, 계란치기
 
