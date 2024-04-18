@@ -14,6 +14,9 @@ def bfs(n, sec):
 
         x, y = q.popleft()
 
+        if y > ans:
+            continue
+
         if x == K:
             ans = min(ans, y)
 
