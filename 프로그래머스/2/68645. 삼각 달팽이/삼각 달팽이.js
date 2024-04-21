@@ -39,8 +39,11 @@ function solution(n) {
     dfs(0, 0)
     
     for (let i = 0; i < n; i++) {
-        const filter = arr[i].filter(x => x > 0)
-        answer = [...answer, ...filter]
+        for (let j = 0; j < n; j++) {
+            if (arr[i][j] > 0) {
+                answer.push(arr[i][j])
+            }
+        }
     }
     return answer;
 }
